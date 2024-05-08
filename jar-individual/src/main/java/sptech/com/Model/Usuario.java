@@ -9,11 +9,14 @@ public class Usuario {
 
     private String senha;
 
-    public Usuario(Integer idusuario, String nomeUser, String emial, String senha) {
+    public Usuario(Integer idusuario, String nomeUser, String email, String senha) {
         this.idusuario = idusuario;
         this.nomeUser = nomeUser;
         this.email = email;
         this.senha = senha;
+    }
+
+    public Usuario() {
     }
 
     public Integer getIdusuario() {
@@ -24,7 +27,7 @@ public class Usuario {
         return nomeUser;
     }
 
-    public String getEmial() {
+    public String getEmail() {
         return email;
     }
 
@@ -40,8 +43,8 @@ public class Usuario {
         this.nomeUser = nomeUser;
     }
 
-    public void setEmial(String emial) {
-        this.email = emial;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setSenha(String senha) {
