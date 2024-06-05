@@ -176,6 +176,7 @@ public class Main {
             row.createCell(0).setCellValue(now.format(formatter));
             row.createCell(1).setCellValue(tipoDado);
             row.createCell(2).setCellValue(valor);
+            row.createCell(3).setCellValue(medida);
 
             try (FileOutputStream fileOut = new FileOutputStream(EXCEL_FILE_PATH)) {
                 workbook.write(fileOut);
