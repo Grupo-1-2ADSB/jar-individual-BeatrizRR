@@ -11,10 +11,7 @@ import com.medtech.model.componente.memoria.MonitoramentoMemoria;
 import com.medtech.model.componente.rede.MonitoramentoRede;
 import com.medtech.model.usuario.Usuario;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,11 +19,15 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Main {
 
     private static final String LOG_DIRECTORY = "C:\\ProjectADS\\jar-individual-BeatrizRR";
     private static final String LOG_FILE_PATH = LOG_DIRECTORY + "\\log.txt";
+
+    private static final String EXCEL_FILE_PATH = "C:/ProjectADS/jar-individual-BeatrizRR/dadosColetados.xlsx";
 
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
@@ -41,6 +42,7 @@ public class Main {
         ComponenteDAO componenteDAO = new ComponenteDAO();
 
         exibirBanner();
+        criarArquivoExcel();
 
         Usuario usuario = autenticarUsuario(scanner, usuarioDAO);
         if (usuario != null && !usuario.getNomeUser().isEmpty()) {
@@ -121,6 +123,12 @@ public class Main {
                 System.out.println("Velocidade da Rede: " + String.format("%.2f", velocidadeRede) + " Mbps");
                 System.out.println();
 
+                // Escreve os dados no arquivo Excel
+                escreverDadosNoExcel("Uso da Memória", memoriaEmUso, "GB");
+                escreverDadosNoExcel("Uso da CPU", usoCpuGHz, "GHz");
+                escreverDadosNoExcel("Armazenamento em uso", armazenamentoEmUso, "GB");
+                escreverDadosNoExcel("Velocidade da Rede", velocidadeRede, "Mbps");
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 logEvent("Erro ao coletar dados: " + e.getMessage());
@@ -128,6 +136,52 @@ public class Main {
                 logEvent("Erro ao inserir dados no banco de dados: " + e.getMessage());
                 System.out.println("Erro ao inserir dados no banco de dados: " + e.getMessage());
             }
+        }
+    }
+
+    private static void criarArquivoExcel() {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Dados");
+
+        // Cria o cabeçalho
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("Data e Hora");
+        headerRow.createCell(1).setCellValue("Tipo de Dado");
+        headerRow.createCell(2).setCellValue("Valor");
+        headerRow.createCell(3).setCellValue("Medida");
+
+        try (FileOutputStream fileOut = new FileOutputStream(EXCEL_FILE_PATH)) {
+            workbook.write(fileOut);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void escreverDadosNoExcel(String tipoDado, double valor, String medida) {
+        try {
+            Workbook workbook;
+            Path path = Paths.get(EXCEL_FILE_PATH);
+            if (Files.exists(path)) {
+                workbook = WorkbookFactory.create(Files.newInputStream(path));
+            } else {
+                workbook = new XSSFWorkbook();
+            }
+            Sheet sheet = workbook.getSheetAt(0);
+
+            int rowCount = sheet.getLastRowNum();
+            Row row = sheet.createRow(rowCount + 1);
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            row.createCell(0).setCellValue(now.format(formatter));
+            row.createCell(1).setCellValue(tipoDado);
+            row.createCell(2).setCellValue(valor);
+
+            try (FileOutputStream fileOut = new FileOutputStream(EXCEL_FILE_PATH)) {
+                workbook.write(fileOut);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
