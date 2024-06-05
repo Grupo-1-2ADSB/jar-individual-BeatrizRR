@@ -1,18 +1,19 @@
-package sptech.api.model.componente;
+package com.medtech.model.componente.cpu;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.medtech.model.componente.Hardware;
 
-public class MonitoramentoCPU extends Hardware {
+public class MonitoramentoCpu extends Hardware {
     private Looca looca = new Looca();
     private String cpuId = looca.getProcessador().getId();
     private Long cpuFreq = looca.getProcessador().getFrequencia(); // Em Hz
     private Double cpuUso = looca.getProcessador().getUso();
 
-    public MonitoramentoCPU(String nomeHardware, String unidadeDeMedida, Double medida, String descricaoHardware) {
+    public MonitoramentoCpu(String nomeHardware, String unidadeDeMedida, Double medida, String descricaoHardware) {
         super(nomeHardware, unidadeDeMedida, medida, descricaoHardware);
     }
 
-    public MonitoramentoCPU() {
+    public MonitoramentoCpu() {
     }
 
     public double getCpuFreqGHz() {

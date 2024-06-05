@@ -1,14 +1,14 @@
-package sptech.api;
+package com.medtech;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.sistema.Sistema;
-
-import sptech.api.dao.ComponenteDAO;
-import sptech.api.dao.UsuarioDAO;
-import sptech.api.model.usuario.Usuario;
-import sptech.api.model.componente.Armazenamento;
-import sptech.api.model.componente.MonitoramentoCPU;
-import sptech.api.model.componente.MonitoramentoMemoria;
+import com.medtech.dao.ComponenteDAO;
+import com.medtech.dao.UsuarioDAO;
+import com.medtech.inovacao.MemoryUsageFinisher;
+import com.medtech.model.componente.armazenamento.Armazenamento;
+import com.medtech.model.componente.cpu.MonitoramentoCpu;
+import com.medtech.model.componente.memoria.MonitoramentoMemoria;
+import com.medtech.model.usuario.Usuario;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -21,7 +21,7 @@ public class Main {
         Looca looca = new Looca();
         Armazenamento disco01 = new Armazenamento();
         MonitoramentoMemoria memoria01 = new MonitoramentoMemoria();
-        MonitoramentoCPU cpu01 = new MonitoramentoCPU();
+        MonitoramentoCpu cpu01 = new MonitoramentoCpu();
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         ComponenteDAO componenteDAO = new ComponenteDAO();
@@ -31,7 +31,7 @@ public class Main {
         Usuario usuario = autenticarUsuario(scanner, usuarioDAO);
         if (usuario != null && !usuario.getNomeUser().isEmpty()) {
             exibirSistema(looca);
-            iniciarColetaDeDados(memoria01, cpu01, disco01, componenteDAO);
+            iniciarColetaDeDados(memoria01, cpu01, disco01, componenteDAO, usuario.getNomeUser());
         } else {
             System.out.println("Usuário ou senha incorretos. Tente novamente mais tarde.");
         }
@@ -41,12 +41,12 @@ public class Main {
 
     private static void exibirBanner() {
         System.out.println("""
-                 __  __          _ _____         _    \s
-                |  \\/  | ___  __| |_   _|__  ___| |__ \s
-                | |\\/| |/ _ \\/ _` | | |/ _ \\/ __| '_ \\\s
-                | |  | |  __/ (_| | | |  __/ (__| | | |
-                |_|  |_|\\___|\\__,_| |_|\\___|\\___|_| |_|
-                                                      \s""");
+             __  __          _ _____         _    
+            |  \\/  | ___  __| |_   _|__  ___| |__ 
+            | |\\/| |/ _ \\/ _` | | |/ _ \\/ __| '_ \\
+            | |  | |  __/ (_| | | |  __/ (__| | | |
+            |_|  |_|\\___|\\__,_| |_|\\___|\\___|_| |_|
+                                                  """);
         System.out.println("=====================================");
     }
 
@@ -74,8 +74,9 @@ public class Main {
         System.out.println("=====================================");
     }
 
-    private static void iniciarColetaDeDados(MonitoramentoMemoria memoria, MonitoramentoCPU cpu, Armazenamento armazenamento, ComponenteDAO componenteDAO) {
+    private static void iniciarColetaDeDados(MonitoramentoMemoria memoria, MonitoramentoCpu cpu, Armazenamento armazenamento, ComponenteDAO componenteDAO, String nomeUsuario) {
         while (true) {
+            //MemoryUsageFinisher.checkMemoryUsage();
             try {
                 Thread.sleep(3000);
 
@@ -83,9 +84,9 @@ public class Main {
                 double usoCpu = cpu.getCpuFreqGHz();
                 double armazenamentoEmUso = armazenamento.getVolumes();
 
-                componenteDAO.inserirUsoMemoria(memoria);
-                componenteDAO.inserirUsoArmazenamento(armazenamento);
-                componenteDAO.inserirUsoCpu(cpu);
+                componenteDAO.inserirUsoMemoria(memoria, nomeUsuario);
+                componenteDAO.inserirUsoArmazenamento(armazenamento, nomeUsuario);
+                componenteDAO.inserirUsoCpu(cpu, nomeUsuario);
 
                 System.out.println("Dados atuais:");
                 System.out.println("Uso da Memória: " + String.format("%.2f", memoriaEmUso) + " GB");

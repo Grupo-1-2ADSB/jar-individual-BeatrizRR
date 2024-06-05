@@ -1,4 +1,4 @@
-package sptech.api.model.usuario;
+package com.medtech.model.usuario;
 
 public class Usuario {
     private Integer idUsuario;
@@ -50,15 +50,11 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return """
-                ----------------------------
-                USUÁRIO
-                ID: %d
-                Nome: %s
-                E-mail: %s
-                Senha: %s
-                ----------------------------
-                """.formatted(idUsuario, nomeUser, email, senha);
+        return "\nUsuario{" +
+                "idUsuario=" + idUsuario +
+                ", nomeUser='" + nomeUser + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 
 }

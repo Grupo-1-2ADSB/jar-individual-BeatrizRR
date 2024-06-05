@@ -1,4 +1,4 @@
-package sptech.api.model.componente;
+package com.medtech.model.componente;
 
 public abstract class Hardware {
 

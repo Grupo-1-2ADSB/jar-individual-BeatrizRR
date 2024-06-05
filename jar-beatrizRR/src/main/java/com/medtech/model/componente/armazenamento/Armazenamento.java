@@ -1,7 +1,9 @@
-package sptech.api.model.componente;
+package com.medtech.model.componente.armazenamento;
 
 import com.github.britooo.looca.api.core.Looca;
-import com.github.britooo.looca.api.group.discos.Volume;
+import com.github.britooo.looca.api.group.discos.Disco;
+import  com.github.britooo.looca.api.group.discos.Volume;
+import com.medtech.model.componente.Hardware;
 
 import java.util.List;
 
