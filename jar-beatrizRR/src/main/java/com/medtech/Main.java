@@ -19,6 +19,9 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -94,8 +97,26 @@ public class Main {
     }
 
     private static void iniciarColetaDeDados(MonitoramentoMemoria memoria, MonitoramentoCpu cpu, Armazenamento armazenamento, MonitoramentoRede rede, ComponenteDAO componenteDAO, String nomeUsuario) {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                double memoriaEmUso = memoria.getMemoriaEmUsoGB();
+                double usoCpuGHz = cpu.getCpuUsoGHz();
+                double armazenamentoEmUso = armazenamento.getVolumes();
+                double velocidadeRede = rede.calcularVelocidadeRedeMbps();
+
+                // Escreve os dados no arquivo Excel
+                escreverDadosNoExcel("Uso da Memória", memoriaEmUso, "GB");
+                escreverDadosNoExcel("Uso da CPU", usoCpuGHz, "GHz");
+                escreverDadosNoExcel("Armazenamento em uso", armazenamentoEmUso, "GB");
+                escreverDadosNoExcel("Velocidade da Rede", velocidadeRede, "Mbps");
+            }
+        }, 0, 5000);
+
         while (true) {
             MemoryUsageFinisher.checkMemoryUsage();
+            System.out.println("Iniciando coleta dos dados");
             try {
                 Thread.sleep(3000);
 
@@ -123,11 +144,7 @@ public class Main {
                 System.out.println("Velocidade da Rede: " + String.format("%.2f", velocidadeRede) + " Mbps");
                 System.out.println();
 
-                // Escreve os dados no arquivo Excel
-                escreverDadosNoExcel("Uso da Memória", memoriaEmUso, "GB");
-                escreverDadosNoExcel("Uso da CPU", usoCpuGHz, "GHz");
-                escreverDadosNoExcel("Armazenamento em uso", armazenamentoEmUso, "GB");
-                escreverDadosNoExcel("Velocidade da Rede", velocidadeRede, "Mbps");
+
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -158,6 +175,9 @@ public class Main {
     }
 
     private static void escreverDadosNoExcel(String tipoDado, double valor, String medida) {
+
+        System.out.println("Inserindo linha no excel");
+
         try {
             Workbook workbook;
             Path path = Paths.get(EXCEL_FILE_PATH);
