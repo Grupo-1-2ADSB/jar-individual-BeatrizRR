@@ -45,6 +45,7 @@ public class Main {
         ComponenteDAO componenteDAO = new ComponenteDAO();
 
         exibirBanner();
+        criarArquivoExcel();
 
         Usuario usuario = autenticarUsuario(scanner, usuarioDAO);
         if (usuario != null && !usuario.getNomeUser().isEmpty()) {

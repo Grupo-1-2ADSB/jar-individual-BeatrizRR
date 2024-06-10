@@ -479,3 +479,85 @@ Permissões: Executando como usuário padrão
 2024-06-10 13:17:03 - Erro ao inserir dados no banco de dados: Hardware não encontrado: Armazenamento
 2024-06-10 13:17:12 - Erro ao inserir dados no banco de dados: Hardware não encontrado: Armazenamento
 2024-06-10 13:17:25 - Erro ao inserir dados no banco de dados: Hardware não encontrado: Armazenamento
+2024-06-10 17:25:31 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:25:32 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:00:31
+Permissões: Executando como usuário padrão
+
+2024-06-10 17:30:06 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:30:07 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:05:06
+Permissões: Executando como usuário padrão
+
+2024-06-10 17:31:18 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:31:20 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:06:19
+Permissões: Executando como usuário padrão
+
+2024-06-10 17:33:03 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:33:04 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:08:04
+Permissões: Executando como usuário padrão
+
+2024-06-10 17:34:34 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:34:35 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:09:35
+Permissões: Executando como usuário padrão
+
+2024-06-10 17:38:44 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:38:46 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:13:45
+Permissões: Executando como usuário padrão
+
+2024-06-10 17:39:48 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:39:50 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:14:49
+Permissões: Executando como usuário padrão
+
+2024-06-10 17:40:08 - Dados coletados: Memória em uso: 3.3710174560546875 GB, Uso de CPU: 0.11485753487308482 GHz, Armazenamento em uso: 90.54890060424805 GB
+2024-06-10 17:40:18 - Dados coletados: Memória em uso: 3.4630126953125 GB, Uso de CPU: 0.20896868475991645 GHz, Armazenamento em uso: 90.54890060424805 GB
+2024-06-10 17:40:46 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:40:48 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:15:47
+Permissões: Executando como usuário padrão
+
+2024-06-10 17:46:54 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:46:55 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:21:54
+Permissões: Executando como usuário padrão
+
+2024-06-10 17:51:49 - Login bem-sucedido para o usuário: PH
+2024-06-10 17:51:50 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-10T16:25:26Z
+Tempo de atividade: 0 days, 04:26:49
+Permissões: Executando como usuário padrão
+
