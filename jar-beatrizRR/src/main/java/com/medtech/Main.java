@@ -27,7 +27,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Main {
 
-    private static final String LOG_DIRECTORY = "C:\\ProjectADS\\jar-individual-BeatrizRR";
+    private static final String LOG_DIRECTORY = "Hardware_LOG";
     private static final String LOG_FILE_PATH = LOG_DIRECTORY + "\\log.txt";
 
     private static final String EXCEL_FILE_PATH = "C:/ProjectADS/jar-individual-BeatrizRR/dadosColetados.xlsx";
@@ -45,7 +45,6 @@ public class Main {
         ComponenteDAO componenteDAO = new ComponenteDAO();
 
         exibirBanner();
-        criarArquivoExcel();
 
         Usuario usuario = autenticarUsuario(scanner, usuarioDAO);
         if (usuario != null && !usuario.getNomeUser().isEmpty()) {
@@ -96,7 +95,7 @@ public class Main {
         System.out.println("=====================================");
     }
 
-    private static void iniciarColetaDeDados(MonitoramentoMemoria memoria, MonitoramentoCpu cpu, Armazenamento armazenamento, MonitoramentoRede rede, ComponenteDAO componenteDAO, String nomeUsuario) {
+    private static void iniciarColetaDeDados(MonitoramentoMemoria memoria, MonitoramentoCpu cpu, Armazenamento armazenamento, MonitoramentoRede rede, ComponenteDAO componenteDAO, String nomeUsuario) throws SQLException {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -104,7 +103,7 @@ public class Main {
                 double memoriaEmUso = memoria.getMemoriaEmUsoGB();
                 double usoCpuGHz = cpu.getCpuUsoGHz();
                 double armazenamentoEmUso = armazenamento.getVolumes();
-                double velocidadeRede = rede.calcularVelocidadeRedeMbps();
+                double velocidadeRede = rede.calcularVelocidadeRede();
 
                 // Escreve os dados no arquivo Excel
                 escreverDadosNoExcel("Uso da Memória", memoriaEmUso, "GB");
@@ -116,19 +115,24 @@ public class Main {
 
         while (true) {
             MemoryUsageFinisher.checkMemoryUsage();
-            System.out.println("Iniciando coleta dos dados");
             try {
                 Thread.sleep(3000);
+                Looca looca = new Looca();
 
                 memoria.getMemoriaEmUsoGB();
                 cpu.getCpuFreqGHz();
                 armazenamento.getVolumes();
-                rede.atualizarDadosRede();
+                rede.calcularVelocidadeRede();
+                //MonitoramentoRede.velocidadeRede();
+
+                cpu.setCpuUso(looca.getProcessador().getUso());
+                cpu.setCpuFreq(looca.getProcessador().getFrequencia());
 
                 double memoriaEmUso = memoria.getMemoriaEmUsoGB();
                 double usoCpuGHz = cpu.getCpuUsoGHz();
                 double armazenamentoEmUso = armazenamento.getVolumes();
-                double velocidadeRede = rede.calcularVelocidadeRedeMbps();
+                double velocidadeRede = rede.calcularVelocidadeRede();
+                double usoCpuPorcentagem = cpu.getCpuUsoPorcentagem();
 
                 componenteDAO.inserirUsoMemoria(memoria, nomeUsuario);
                 componenteDAO.inserirUsoArmazenamento(armazenamento, nomeUsuario);
@@ -140,11 +144,10 @@ public class Main {
                 System.out.println("Dados atuais:");
                 System.out.println("Uso da Memória: " + String.format("%.2f", memoriaEmUso) + " GB");
                 System.out.println("Uso da CPU: " + String.format("%.2f", usoCpuGHz) + " GHz");
+                System.out.println("Porcentagem de uso da CPU: " + String.format("%.2f", usoCpuPorcentagem) + "%");
                 System.out.println("Armazenamento em uso: " + String.format("%.2f", armazenamentoEmUso) + " GB");
                 System.out.println("Velocidade da Rede: " + String.format("%.2f", velocidadeRede) + " Mbps");
                 System.out.println();
-
-
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -236,4 +239,5 @@ public class Main {
             e.printStackTrace();
         }
     }
+
 }
