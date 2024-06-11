@@ -561,3 +561,35 @@ Inicializado: 2024-06-10T16:25:26Z
 Tempo de atividade: 0 days, 04:26:49
 Permissões: Executando como usuário padrão
 
+2024-06-11 17:46:49 - Login bem-sucedido para o usuário: PH
+2024-06-11 17:46:51 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-11T18:56:10Z
+Tempo de atividade: 0 days, 01:50:57
+Permissões: Executando como usuário padrão
+
+2024-06-11 17:47:12 - Dados coletados: Memória em uso: 3.588970184326172 GB, Uso de CPU: 1.1846584362139918 GHz, Armazenamento em uso: 89.61834335327148 GB
+2024-06-11 17:47:21 - Dados coletados: Memória em uso: 3.61932373046875 GB, Uso de CPU: 0.6342776470588235 GHz, Armazenamento em uso: 89.61834335327148 GB
+2024-06-11 17:47:29 - Dados coletados: Memória em uso: 3.584674835205078 GB, Uso de CPU: 0.5550735694822888 GHz, Armazenamento em uso: 89.61834335327148 GB
+2024-06-11 17:48:37 - Login bem-sucedido para o usuário: PH
+2024-06-11 17:48:38 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-11T18:56:10Z
+Tempo de atividade: 0 days, 01:52:44
+Permissões: Executando como usuário padrão
+
+2024-06-11 17:48:52 - Dados coletados: Memória em uso: 3.3212356567382812 GB, Uso de CPU: 0.5570929264909846 GHz, Armazenamento em uso: 89.60575485229492 GB
+2024-06-11 17:49:28 - Login bem-sucedido para o usuário: PH
+2024-06-11 17:49:30 - Dados do sistema recuperados: Sistema operacional: Windows
+Fabricante: Microsoft
+Arquitetura: 64bits
+Inicializado: 2024-06-11T18:56:10Z
+Tempo de atividade: 0 days, 01:53:36
+Permissões: Executando como usuário padrão
+
+2024-06-11 17:49:41 - Dados coletados: Memória em uso: 3.363330841064453 GB, Uso de CPU: 0.17411786457129652 GHz, Armazenamento em uso: 89.60628128051758 GB
+2024-06-11 17:49:52 - Dados coletados: Memória em uso: 3.386859893798828 GB, Uso de CPU: 0.5761375686649152 GHz, Armazenamento em uso: 89.60628128051758 GB
+2024-06-11 17:50:03 - Dados coletados: Memória em uso: 3.4514694213867188 GB, Uso de CPU: 0.3429557152793879 GHz, Armazenamento em uso: 89.60628128051758 GB
+2024-06-11 17:50:15 - Dados coletados: Memória em uso: 3.5716400146484375 GB, Uso de CPU: 0.6426197049024274 GHz, Armazenamento em uso: 89.60628128051758 GB

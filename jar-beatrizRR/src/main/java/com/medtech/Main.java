@@ -30,7 +30,7 @@ public class Main {
     private static final String LOG_DIRECTORY = "Hardware_LOG";
     private static final String LOG_FILE_PATH = LOG_DIRECTORY + "\\log.txt";
 
-    private static final String EXCEL_FILE_PATH = "C:/ProjectADS/jar-individual-BeatrizRR/dadosColetados.xlsx";
+    private static final String EXCEL_FILE_PATH = "/jar-individual-BeatrizRR/dadosColetados.xlsx";
 
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
@@ -115,7 +115,7 @@ public class Main {
         }, 0, 5000);
 
         while (true) {
-            MemoryUsageFinisher.checkMemoryUsage();
+//            MemoryUsageFinisher.checkMemoryUsage();
             try {
                 Thread.sleep(3000);
                 Looca looca = new Looca();
@@ -179,9 +179,6 @@ public class Main {
     }
 
     private static void escreverDadosNoExcel(String tipoDado, double valor, String medida) {
-
-        System.out.println("Inserindo linha no excel");
-
         try {
             Workbook workbook;
             Path path = Paths.get(EXCEL_FILE_PATH);
