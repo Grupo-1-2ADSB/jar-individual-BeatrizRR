@@ -30,7 +30,7 @@ public class Main {
     private static final String LOG_DIRECTORY = "Hardware_LOG";
     private static final String LOG_FILE_PATH = LOG_DIRECTORY + "\\log.txt";
 
-    private static final String EXCEL_FILE_PATH = "/jar-individual-BeatrizRR/dadosColetados.xlsx";
+    private static final String EXCEL_FILE_PATH = "\\jar-individual-BeatrizRR/dadodsColetados.xlsx";
 
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
